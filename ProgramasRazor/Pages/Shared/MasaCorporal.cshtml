@@ -1,0 +1,42 @@
+﻿@page
+@model ProgramasRazor.Pages.Shared.MasaCorporalModel
+@{
+}
+
+<h2> Calcular el indice de masa corporal</h2>
+
+<form method="POST">
+    <p>Altura: <input type="number" asp-for="alt" step="any" /></p>
+    <p>Peso: <input type="number" asp-for="pes" step="any" /></p>
+    <p><input type="submit" value="Calcular" /> </p>
+
+    @if (Model.imc != 0){
+        <div><strong> IMC = @Model.imc</strong></div>
+        <div><strong> Su clasificación es:  = @Model.mensaje</strong></div>
+
+        @if (Model.mensaje == "Peso Bajo")
+        {
+            <img src="~/images/OIP.jpg" />
+        }
+        else if (Model.mensaje == "Peso Normal")
+        {
+            <img src="~/images/mantener.jpg"/>
+        }
+        else if (Model.mensaje == "Sobre peso")
+        {
+            <img src="~/images/bajar.png" />
+        }
+        else if (Model.mensaje == "Obesidad grado I")
+        {
+            <img src="~/images/o1.jpg" />
+        }
+        else if (Model.mensaje == "Obesidad grado II")
+        {
+            <img src="~/images/o2.jpg" />
+        }
+        else if (Model.mensaje == "Obesidad grado III")
+        {
+            <img src="~/images/o3.jpg" />
+        }
+    }
+</form>

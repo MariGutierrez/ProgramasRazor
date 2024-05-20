@@ -1,0 +1,56 @@
+﻿@page
+@model ProgramasRazor.Pages.arregloModel
+@{
+    Random random = new Random();
+
+    int[] numeros = new int[20];
+    int suma = 0;
+    double promedio = 0.0;
+    double mediana = 0.0;
+
+    for (int i = 0; i < numeros.Length; i++)
+    {
+        numeros[i] = random.Next(1, 101);
+        suma += numeros[i];
+        promedio = suma / 20;
+
+    }
+
+    int[] numerosOrdenados = new int[numeros.Length];
+    Array.Copy(numeros, numerosOrdenados, numeros.Length);
+    Array.Sort(numerosOrdenados);
+
+    int indiceMedio1 = numerosOrdenados.Length / 2 - 1;
+    int indiceMedio2 = numerosOrdenados.Length / 2;
+    mediana = (numerosOrdenados[indiceMedio1] + numerosOrdenados[indiceMedio2]) / 2.0;
+
+    var gruposNumerosRepetidos = numeros.GroupBy(x => x)
+                                        .OrderByDescending(g => g.Count());
+
+    var maxFrecuencia = gruposNumerosRepetidos.First().Count();
+
+    var numerosMasRepetidos = gruposNumerosRepetidos
+                               .Where(g => g.Count() == maxFrecuencia)
+                               .Select(g => g.Key)
+                               .ToList();
+}
+
+<h3>Arreglo aleatorio</h3>
+
+    @string.Join(", ", numeros)
+
+<h3>Arreglo ordenado</h3>
+@string.Join(", ", numerosOrdenados)
+
+<p>Suma: @suma</p>
+<p>Promedio: @promedio</p>
+<p>Mediana: @mediana</p>
+
+
+<h3>Números que más se repiten:</h3>
+@foreach (var num in numerosMasRepetidos)
+{
+    <li>@num</li>
+}
+
+

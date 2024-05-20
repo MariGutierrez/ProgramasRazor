@@ -1,0 +1,21 @@
+﻿@page
+@model ProgramasRazor.Pages.Shared.AlfabetoModel
+@{
+}
+
+<h3> Alfabeto </h3>
+
+<form method="POST">
+    <p>Ingresa el mensaje: <input type="text" asp-for="mensaje" /></p>
+    <p>Ingresa el valor de n: <input type="text" asp-for="valorN" /></p>
+    <p><input type="submit" value="Cifrar" name="accion" /> </p>
+    <p><input type="submit" value="Descifrar" name="accion" /> </p>
+
+    @if (Model.resultado != "")
+    {
+        <div><strong> Mensaje = @Model.resultado</strong></div>
+    }
+    
+</form>
+
+

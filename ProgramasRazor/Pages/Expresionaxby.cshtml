@@ -1,0 +1,32 @@
+﻿@page
+@model ProgramasRazor.Pages.ExpresionaxbyModel
+@{
+}
+
+<h3>Expresión (𝑎𝑥+𝑏𝑦)𝑛</h3>
+
+<form method="POST">
+    <p>Ingrese el valor de a: <input type="number" asp-for="a"/></p>
+    <p>Ingrese el valor de b: <input type="number" asp-for="b"/></p>
+    <p>Ingrese el valor de x: <input type="number" asp-for="x"/></p>
+    <p>Ingrese el valor de y: <input type="number" asp-for="y"/></p>
+    <p>Ingrese el valor de n: <input type="number" asp-for="n"/></p>
+    <p><input type="submit" value="Calcular"/></p>
+
+    @if (@Model.resultados != null && @Model.resultados.Length > 0)
+    {
+        <div>
+            <strong>Resultados:</strong>
+            <ul>
+                @foreach (var resultado in @Model.resultados)
+                {
+                    <li>@resultado</li>
+                }
+            </ul>
+            <strong>Total: @Model.sumaResultado</strong>
+        </div>
+    }
+
+</form>
+
+
